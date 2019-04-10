@@ -15,7 +15,7 @@ function update() {
 
     // send post request
     var xhr = new XMLHttpRequest();
-    let url = 'https://api-v3.mbta.com/predictions?filter[stop]='+stopID
+    let url = 'https://api-v3.mbta.com/predictions?filter[stop]='+stopID+'&api_key=3e49ecb783aa4a67887abac4466af5b8'
     xhr.open('GET', url);
     xhr.onload = function () {
       // do something to response
