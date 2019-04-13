@@ -19,8 +19,7 @@ function update() {
     xhr.open('GET', url);
     xhr.onload = function () {
       // do something to response
-      // console.log("sent request");
-      console.log(this.responseText);
+      // console.log(this.responseText);
       updateBus(routeID, dirID, this.responseText, divID);
     };
     xhr.send()
@@ -32,8 +31,6 @@ function updateBus(routeID, dirID, dataString, divID){
   let dataJSON = JSON.parse(dataString);
   // let formattedTimeString = "";
   let times = [];
-  console.log(dataString);
-  console.log(dataJSON);
 
   for (let i = 0; i < dataJSON["data"].length; i++) {
     let dataRoute = dataJSON["data"][i]["relationships"]["route"]["data"]["id"];
@@ -48,8 +45,6 @@ function updateBus(routeID, dirID, dataString, divID){
       let arrival_hours = parseInt(time.substring(0,2));
       let arrival_min = parseInt(time.substring(3,5));
 
-      console.log(arrival_hours + ":" + arrival_min);
-
       // get current time
       let d = new Date();
       let current_hours = d.getHours();
@@ -57,7 +52,6 @@ function updateBus(routeID, dirID, dataString, divID){
 
       // get minutes remaining
       let minutes_remaining = 60*(arrival_hours-current_hours) + (arrival_min-current_min);
-      console.log(minutes_remaining);
 
       times.push(minutes_remaining);
     }
@@ -65,11 +59,11 @@ function updateBus(routeID, dirID, dataString, divID){
 
   // create the time string
   times.sort(function(a, b){return a - b});
+  times = times.slice(0,Math.min(4, times.length));
   let formattedTimeString = times.toString();
   formattedTimeString =  formattedTimeString.replace(/,/g, ', ');
 
   // create the time page element
-  let $timeText = $("<h3>").html(formattedTimeString);
-  $('#'+divID).append($timeText)
+  $('#'+divID).html("<h3>" + formattedTimeString + "</h3>")
 
 }
