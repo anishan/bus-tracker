@@ -41,17 +41,15 @@ function updateBus(routeID, dirID, dataString, divID){
       if (datetime == null){
         datetime = dataJSON["data"][i]["attributes"]["departure_time"];
       }
-      let time = datetime.substring(11,19);
-      let arrival_hours = parseInt(time.substring(0,2));
-      let arrival_min = parseInt(time.substring(3,5));
-
+      console.log(datetime);
+      let arrivalTime = new Date(datetime);
+      
       // get current time
-      let d = new Date();
-      let current_hours = d.getHours();
-      let current_min = d.getMinutes();
+      let currentTime = new Date();
 
       // get minutes remaining
-      let minutes_remaining = 60*(arrival_hours-current_hours) + (arrival_min-current_min);
+      let millis_remaining = arrivalTime.getTime()-currentTime.getTime();
+      let minutes_remaining = Math.round(millis_remaining/60000);
 
       times.push(minutes_remaining);
     }
