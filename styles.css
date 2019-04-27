@@ -14,20 +14,20 @@ body {
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 3vh;
   margin: 2px;
   text-transform: uppercase;
   color: #999;
 }
 
 h2 {
-  font-size: 50px;
+  font-size: 3vh;
   margin: 2px;
   margin-top: 10px;
 }
 
 h3 {
-  font-size: 80px;
+  font-size: 6.5vh;
   margin: : 2px;
   margin-top: 0;
   margin-bottom: 0;
@@ -72,4 +72,7 @@ div {
   text-align: center;
   font-size: 50px;
   text-transform: uppercase;
+  height: 10%;
+  border: none;
+  font-size: 5vh;
 }
